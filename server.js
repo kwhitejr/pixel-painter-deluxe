@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var CONFIG = require('./config.json');
 
 var app = express();
 
@@ -13,6 +14,6 @@ app.get('/', function (req, res) {
   res.render('index', {x: 10, y: 10});
 });
 
-var server = app.listen(3000, function() {
-  console.log('Listening to port', server.address().port);
+var server = app.listen(CONFIG.PORT, function() {
+  console.log('Listening to port', CONFIG.PORT);
 });

@@ -57,14 +57,28 @@ h1 {
   color: #585858;
   font-size: 3rem; }
 
+#swatch {
+  display: inline-block; }
+
+#canvas {
+  display: inline-block; }
+
 .swatchCell {
+  border: 1px solid black;
   display: inline-block;
   height: 25px;
-  width: 25px;
-  border: 1px solid black; }
+  width: 25px; }
 
 .canvasCell {
+  border: 1px solid black;
   display: inline-block;
   height: 50px;
-  width: 50px;
-  border: 1px solid black; }
+  width: 50px; }
+
+.parent {
+  display: flex; }
+
+.parent > div {
+  display: inline-block;
+  padding: 1em;
+  border: 2px solid #f00; }

@@ -35,16 +35,41 @@ h1 {
   font-size: 3rem;
 }
 
+#swatch {
+  display: inline-block;
+}
+
+#canvas {
+  display: inline-block;
+}
+
+.grid {
+}
+
+.row {
+  // inline-block;
+  // padding: 1em;
+}
+
 .swatchCell {
+  border: 1px solid black;
   display: inline-block;
   height: 25px;
   width: 25px;
-  border: 1px solid black;
 }
 
 .canvasCell {
+  border: 1px solid black;
   display: inline-block;
   height: 50px;
   width: 50px;
-  border: 1px solid black;
+}
+
+.parent {
+    display: flex;
+}
+.parent > div {
+    display: inline-block;
+    padding: 1em;
+    border: 2px solid #f00;
 }
