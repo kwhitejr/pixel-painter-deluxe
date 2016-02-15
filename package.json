@@ -21,5 +21,10 @@
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^2.3.1",
+    "gulp-sass": "^2.2.0"
   }
 }

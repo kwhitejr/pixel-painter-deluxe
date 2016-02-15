@@ -6,10 +6,11 @@ var app = express();
 app.set('views', 'views');
 app.set('view engine', 'jade');
 
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function (req, res) {
-  res.send('index returned');
+  res.render('index');
 });
 
 var server = app.listen(3000, function() {
