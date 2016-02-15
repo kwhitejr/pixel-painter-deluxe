@@ -34,3 +34,17 @@ h1 {
   color: #585858;
   font-size: 3rem;
 }
+
+.swatchCell {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  border: 1px solid black;
+}
+
+.canvasCell {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+}

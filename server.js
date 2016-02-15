@@ -10,7 +10,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function (req, res) {
-  res.render('index');
+  res.render('index', {x: 10, y: 10});
 });
 
 var server = app.listen(3000, function() {
