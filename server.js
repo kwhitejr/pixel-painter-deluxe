@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function (req, res) {
-  res.render('index', {x: 10, y: 10});
+  res.render('index', {x: 10, y: 10, colors: CONFIG.SWATCHES.SUMMER});
 });
 
 var server = app.listen(CONFIG.PORT, function() {
