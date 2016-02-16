@@ -1,12 +1,24 @@
 $(function () {
 
-  console.log('App.js is being read');
+  console.log('App.js is loaded.');
+
+  $(init);
+
+  function init() {
+    swatchEvents();
+    canvasEvents();
+  }
 
   var selectedSwatch = 'white'; // the background color of the selected swatch. Default is white.
 
   function swatchEvents () {
     var swatchCell = $( ".swatchCell" );
     swatchCell.on('click', selectSwatch);
+  }
+
+  function canvasEvents () {
+    var canvasCell = $( ".canvasCell" );
+    canvasCell.on('click', clickDraw);
   }
 
   function selectSwatch() {
@@ -22,8 +34,8 @@ $(function () {
   // draw function for a single click
   function clickDraw() {
     // Changes selected canvas cell background-color to value stored at 'selectedColor'
-    $(this).css('background-color', selectedColor);
-    console.log('drawing');
+    $(this).css('background-color', selectedSwatch);
+    console.log('drawing with ' + selectedSwatch);
   }
 
 });
