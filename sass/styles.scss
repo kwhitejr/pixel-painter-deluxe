@@ -65,11 +65,7 @@ h1 {
   width: 50px;
 }
 
-.parent {
-    display: flex;
-}
-.parent > div {
-    display: inline-block;
-    padding: 1em;
-    border: 2px solid #f00;
+#selected,
+input:hover {
+  border: 1px solid rgba(81, 203, 238, 1);
 }

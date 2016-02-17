@@ -13,18 +13,21 @@ $(function () {
   var selectedSwatch = 'white'; // the background color of the selected swatch. Default is white.
 
   function swatchEvents () {
-    var swatchCell = $( ".swatchCell" );
-    swatchCell.on('click', selectSwatch);
+    var $swatchCell = $( ".swatchCell" );
+    $swatchCell.on('click', selectSwatch);
   }
 
   function canvasEvents () {
-    var canvasCell = $( ".canvasCell" );
-    canvasCell.on('click', clickDraw);
+    var $canvasCell = $( ".canvasCell" );
+    $canvasCell.on('click', clickDraw);
   }
 
   function buttonEvents () {
-    var eraseAllButton = $( "#eraseAllCanvas" );
-    eraseAllButton.on('click', eraseAll);
+    var $eraseAll = $( "input[name='eraseAll']" );
+    $eraseAll.on('click', eraseAll);
+
+    var $eraseOne = $( "input[name='eraseOne']" );
+    $eraseOne.on('click', eraseOne);
   }
 
   function selectSwatch() {
@@ -48,6 +51,14 @@ $(function () {
     // Converts background color of all canvas cells to white.
     console.log('Wow, you erased all the things!');
     $('.canvasCell').css('background-color', 'white');
+  }
+
+  function eraseOne() {
+    console.log('erasing one');
+    $('#selected').removeAttr('id');
+    selectedSwatch = 'white';
+    $(this).css('background-color', selectedSwatch);
+    $(this).attr('id', 'selected');
   }
 
 });
