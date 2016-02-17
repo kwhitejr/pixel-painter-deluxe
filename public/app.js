@@ -10,6 +10,8 @@ $(function () {
     buttonEvents();
   }
 
+  var paintingState = [];
+
   var selectedSwatch = 'white'; // the background color of the selected swatch. Default is white.
 
   function swatchEvents () {
@@ -28,6 +30,9 @@ $(function () {
 
     var $eraseOne = $( "input[name='eraseOne']" );
     $eraseOne.on('click', eraseOne);
+
+    var $saveButton = $("input[name='save']");
+    $saveButton.on('click', save);
   }
 
   function selectSwatch() {
@@ -59,6 +64,23 @@ $(function () {
     selectedSwatch = 'white';
     $(this).css('background-color', selectedSwatch);
     $(this).attr('id', 'selected');
+  }
+
+  function save() {
+    console.log('saving...');
+    $( '.canvasCell' ).each(function (cell) {
+        paintingState.push(this.style['background-color']);
+    });
+    $.ajax( {
+      url: "/save",
+      type: "POST",
+      data: JSON.stringify({"painting": paintingState}),
+      contentType: "application/json",
+      dataType: "json",
+      success: function () {}
+    });
+
+    paintingState = [];
   }
 
 });
