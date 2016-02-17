@@ -37,6 +37,14 @@ app.post('/save', function (req, res) {
   });
 });
 
+app.get('/painting/:id', function (req, res) {
+  Painting.findOne({ '_id': req.params.id})
+  .then(function (result) {
+    console.log(result);
+    res.render('frame', {x: 10, y: 10, painting: result.painting});
+  });
+});
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
