@@ -7,13 +7,15 @@ html(lang="en")
     block title
 
   body
-    //- if isAuthenticated
-    //-   div
-    //-     form(method="GET" action="/logout")
-    //-       input(type="submit" value="Logout")
-    //- else
-    //-   div
-    //-     form(method="GET" action="/login")
-    //-       input(type="submit" value="Login")
+    if isAuthenticated
+      div
+        form(method="GET" action="/logout")
+          input(type="submit" value="Logout")
+      div
+        h3 You are logged in as
+    else
+      div
+        form(method="GET" action="/login")
+          input(type="submit" value="Login")
     block content
     script(src="/app.js")

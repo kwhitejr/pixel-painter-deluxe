@@ -54,8 +54,8 @@ passport.use(new LocalStrategy(
   },
   function (req, username, password, done) {
     User.findOne({
-      username: "kevin",
-      password: "password"
+      username: username,
+      password: password
     }).
     // result of the find is a user
     then(function (user) {
@@ -82,6 +82,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 /*******************************************/
 
+//creates a default value for res.locals
+app.use(function (req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  // res.locals.username = req.session.passport.user.username || null;
+  next();
+});
+
 app.route('/login')
   .get(
     function (req, res) {
@@ -101,7 +108,26 @@ app.get('/logout', function (req, res) {
 });
 
 app.post('/signup', function (req, res) {
-
+  var newUser = new User({
+    username: req.body.username,
+    password: req.body.password,
+  });
+  // if (! User.findOne({username: req.body.username})) {
+  //   newUser.save();
+  //   res.redirect('login');
+  // }
+  return User.findOne({username: req.body.username})
+    .then(function (user) {
+      if (user) {
+        return res.render('login', {message: "That username is already taken."});
+      } else {
+        return newUser
+          .save()
+          .then(function (savedUser) {
+            return res.render('login', {message: "You successfully signed up. Feel free to log in."});
+          });
+      }
+    });
 });
 
 app.get('/',
