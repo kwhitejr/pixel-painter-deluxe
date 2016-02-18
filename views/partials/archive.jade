@@ -1,0 +1,6 @@
+h3 #{username}'s  Paintings
+div(id="archive" class="grid")
+  - for (var row = 0; row < x; row++)
+    div(class="row")
+      - for (var col = 0; col < y; col++)
+        div(class="archiveCell" id="archive_#{row}#{col}")

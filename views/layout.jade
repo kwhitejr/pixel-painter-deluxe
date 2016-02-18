@@ -12,7 +12,7 @@ html(lang="en")
         form(method="GET" action="/logout")
           input(type="submit" value="Logout")
       div
-        h3 You are logged in as
+        h3 You are logged in as #{username}
     else
       div
         form(method="GET" action="/login")

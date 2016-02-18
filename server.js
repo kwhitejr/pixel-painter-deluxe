@@ -134,7 +134,7 @@ app.get('/',
   isAuthenticated,
   function (req, res) {
     console.log(req.session);
-    res.render('index', {x: 10, y: 10, colors: CONFIG.SWATCHES.SUMMER});
+    res.render('index', {x: 10, y: 10, colors: CONFIG.SWATCHES.SUMMER, username: req.session.passport.user.username});
   }
 );
 

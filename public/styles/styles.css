@@ -63,8 +63,10 @@ h1 {
 #canvas {
   display: inline-block; }
 
+#archive {
+  display: inline-block; }
+
 .swatchCell {
-  border: 1px solid black;
   display: inline-block;
   height: 25px;
   width: 25px; }
@@ -74,6 +76,12 @@ h1 {
   display: inline-block;
   height: 50px;
   width: 50px; }
+
+.archiveCell {
+  border: 1px solid black;
+  display: inline-block;
+  height: 15px;
+  width: 15px; }
 
 #selected,
 input:hover {
