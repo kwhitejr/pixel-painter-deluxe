@@ -9,7 +9,6 @@ var morgan = require('morgan');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
-
 mongoose.connect('mongodb://localhost/pixelpainter');
 
 var paintingSchema = mongoose.Schema({
@@ -57,13 +56,10 @@ passport.use(new LocalStrategy(
       username: username,
       password: password
     }).
-    // result of the find is a user
     then(function (user) {
       if ( !user ) {
         return done(null, false);
       }
-      // the thing inside the done will be assigned to req.user
-      // first parameter is error
       return done(null, user);
     });
   }
@@ -139,7 +135,6 @@ app.get('/',
       result.map(function (paintingObj) {
         colorData.push(paintingObj.painting);
       });
-      console.log(colorData);
       res.render('index', {
         x: 10,
         y: 10,
@@ -152,7 +147,6 @@ app.get('/',
 );
 
 app.post('/save', function (req, res) {
-  console.log(req.session);
   var newPainting = new Painting({
     author: req.session.passport.user.username,
     painting: req.body.painting,
@@ -166,7 +160,6 @@ app.post('/save', function (req, res) {
 app.get('/painting/:id', function (req, res) {
   Painting.findOne({ '_id': req.params.id})
   .then(function (result) {
-    console.log(result);
     res.render('frame', {x: 10, y: 10, painting: result.painting});
   });
 });
