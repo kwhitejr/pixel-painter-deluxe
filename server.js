@@ -81,8 +81,13 @@ app.use(passport.session());
 //creates a default value for res.locals
 app.use(function (req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
-  // res.locals.username = req.session.passport.user.username || null;
-  next();
+  res.locals.username= req.session.passport.user.username;
+
+  Painting.find({user_id: req.session.passport.user._id})
+    .then(function (result) {
+      res.locals.paintings = result;
+      next();
+    });
 });
 
 app.route('/login')
@@ -131,16 +136,11 @@ app.get('/',
   function (req, res) {
     Painting.find({user_id: req.session.passport.user._id})
     .then(function (result) {
-      var colorData = [];
-      result.map(function (paintingObj) {
-        colorData.push(paintingObj.painting);
-      });
       res.render('index', {
         x: 10,
         y: 10,
         colors: CONFIG.SWATCHES.SUMMER,
-        username: req.session.passport.user.username,
-        paintings: colorData
+        paintings: result
       });
     });
   }
@@ -157,10 +157,19 @@ app.post('/save', function (req, res) {
   });
 });
 
+app.post('/load', function (req, res) {
+
+});
+
 app.get('/painting/:id', function (req, res) {
   Painting.findOne({ '_id': req.params.id})
   .then(function (result) {
-    res.render('frame', {x: 10, y: 10, painting: result.painting});
+    res.render('index', {
+      x: 10,
+      y: 10,
+      painting: result.painting,
+      colors: CONFIG.SWATCHES.SUMMER
+    });
   });
 });
 
