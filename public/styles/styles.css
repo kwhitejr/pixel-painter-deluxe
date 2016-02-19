@@ -45,6 +45,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+* {
+  box-sizing: border-box; }
+
 html {
   font-size: 16px; }
 
@@ -70,6 +73,9 @@ h1 {
   display: inline-block;
   height: 25px;
   width: 25px; }
+  .swatchCell:hover {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5); }
 
 .canvasCell {
   border: 1px solid black;
@@ -86,3 +92,6 @@ h1 {
 #selected,
 input:hover {
   border: 1px solid #51cbee; }
+
+.row {
+  font-size: 0; }

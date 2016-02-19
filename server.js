@@ -133,8 +133,21 @@ app.post('/signup', function (req, res) {
 app.get('/',
   isAuthenticated,
   function (req, res) {
-    console.log(req.session);
-    res.render('index', {x: 10, y: 10, colors: CONFIG.SWATCHES.SUMMER, username: req.session.passport.user.username});
+    Painting.find({user_id: req.session.passport.user._id})
+    .then(function (result) {
+      var colorData = [];
+      result.map(function (paintingObj) {
+        colorData.push(paintingObj.painting);
+      });
+      console.log(colorData);
+      res.render('index', {
+        x: 10,
+        y: 10,
+        colors: CONFIG.SWATCHES.SUMMER,
+        username: req.session.passport.user.username,
+        paintings: colorData
+      });
+    });
   }
 );
 

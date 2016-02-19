@@ -20,6 +20,10 @@ $medium: "only screen and (min-width:600px)";
 $large: "only screen and (min-width:900px)";
 
 // GENERAL STYLES
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
 }
@@ -60,6 +64,11 @@ h1 {
   display: inline-block;
   height: 25px;
   width: 25px;
+
+  &:hover {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
 }
 
 .canvasCell {
@@ -79,4 +88,8 @@ h1 {
 #selected,
 input:hover {
   border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.row {
+  font-size: 0;
 }
