@@ -1,8 +1,10 @@
 #archive
   h3 #{username}'s  Paintings
   each painting in paintings
-    div(id="archive" class="grid")
+    div(class="archive grid")
+      - var count = 0;
       - for (var row = 0; row < x; row++)
         div(class="row")
           - for (var col = 0; col < y; col++)
-            div(class="archiveCell" id="archive_#{row}#{col}")
+            div(class="archiveCell" id="archive_#{row}#{col}" style={background: "#{painting[count]}"})
+            - count++;

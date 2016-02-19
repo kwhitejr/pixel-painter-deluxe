@@ -69,6 +69,9 @@ h1 {
 #archive {
   display: inline-block; }
 
+.archive {
+  margin: 20px; }
+
 .swatchCell {
   display: inline-block;
   height: 25px;
