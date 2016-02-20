@@ -70,7 +70,6 @@ $(function () {
   }
 
   function save() {
-    console.log('we are saving');
     $( '.canvasCell' ).each(function (cell) {
         paintingState.push(this.style['background-color']);
     });
@@ -82,7 +81,6 @@ $(function () {
       dataType: "html"
     })
       .done(function (partial) {
-        console.log(partial);
         $( '.archiveHolder' ).append(partial);
       });
 
