@@ -33,6 +33,9 @@ $(function () {
 
     var $saveButton = $("input[name='save']");
     $saveButton.on('click', save);
+
+    var $deleteButton = $("input[name='delete']");
+    $deleteButton.on('click', deletePainting);
   }
 
   function selectSwatch() {
@@ -67,7 +70,7 @@ $(function () {
   }
 
   function save() {
-    console.log('saving...');
+    console.log('we are saving');
     $( '.canvasCell' ).each(function (cell) {
         paintingState.push(this.style['background-color']);
     });
@@ -76,8 +79,32 @@ $(function () {
       type: "POST",
       data: JSON.stringify({"painting": paintingState}),
       contentType: "application/json",
-      dataType: "json",
-      success: function () {}
+      dataType: "html"
+    })
+      .done(function (partial) {
+        console.log(partial);
+        $( '.archiveHolder' ).append(partial);
+      });
+
+    paintingState = [];
+  }
+
+  function deletePainting() {
+    $( '.canvasCell' ).each(function (cell) {
+        paintingState.push(this.style['background-color']);
+    });
+    $.ajax( {
+      url: "/delete",
+      type: "POST",
+      data: JSON.stringify({"painting": paintingState}),
+      contentType: "application/json",
+      success: function () {
+        debugger;
+        window.location.href = '/';
+      },
+      error: function (err) {
+        console.error(err);
+      }
     });
 
     paintingState = [];

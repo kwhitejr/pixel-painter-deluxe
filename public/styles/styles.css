@@ -60,8 +60,18 @@ h1 {
   color: #585858;
   font-size: 3rem; }
 
-.archive {
-  margin: 20px; }
+.container {
+  display: flex;
+  flex-direction: row; }
+
+.item.swatch {
+  flex: 0 1 20%; }
+
+.item.canvas {
+  flex: 0 1 50%; }
+
+.item.archive {
+  flex: 0 1 30%; }
 
 .grid {
   display: inline-block; }
@@ -80,8 +90,15 @@ h1 {
   height: 50px;
   width: 50px; }
 
+.archiveHolder {
+  display: flex;
+  flex-direction: column; }
+
+.archiveItem {
+  margin: 20px;
+  border: 1px solid black; }
+
 .archiveCell {
-  border: 1px solid black;
   display: inline-block;
   height: 15px;
   width: 15px; }

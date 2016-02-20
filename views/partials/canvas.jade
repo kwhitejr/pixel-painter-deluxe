@@ -1,15 +1,19 @@
 if painting
-  div(class="canvas grid")
+  div(class="item canvas grid")
     - var count = 0;
     - for (var row = 0; row < x; row++)
       div(class="row")
         - for (var col = 0; col < y; col++)
             div(class="canvasCell" id="canvas_#{row}#{col}" style={background: "#{painting[count]}"})
             - count++;
+    div(class="buttons")
+      include ./buttons.jade
 
 else
-  div(class="canvas grid")
+  div(class="item canvas grid")
     - for (var row = 0; row < x; row++)
       div(class="row")
         - for (var col = 0; col < y; col++)
           div(class="canvasCell" id="canvas_#{row}#{col}")
+    div(class="buttons")
+      include ./buttons.jade

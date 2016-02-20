@@ -39,8 +39,23 @@ h1 {
   font-size: 3rem;
 }
 
-.archive {
-  margin: 20px;
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.item {
+  &.swatch {
+    flex: 0 1 20%;
+  }
+
+  &.canvas {
+    flex: 0 1 50%;
+  }
+
+  &.archive {
+    flex: 0 1 30%;
+  }
 }
 
 .grid {
@@ -71,12 +86,23 @@ h1 {
   width: 50px;
 }
 
-.archiveCell {
+.archiveHolder {
+  display: flex;
+  flex-direction: column;
+}
+
+.archiveItem {
+  margin: 20px;
   border: 1px solid black;
+}
+
+.archiveCell {
   display: inline-block;
   height: 15px;
   width: 15px;
 }
+
+.
 
 #selected,
 input:hover {
