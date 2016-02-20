@@ -104,7 +104,6 @@ $(function () {
       data: JSON.stringify({"painting": paintingState}),
       contentType: "application/json",
       success: function () {
-        debugger;
         window.location.href = '/';
       },
       error: function (err) {

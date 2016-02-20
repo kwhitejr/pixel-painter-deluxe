@@ -8,6 +8,7 @@ var isAuthenticated = require('./middleware/isAuthenticated');
 var morgan = require('morgan');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
+var _ = require('lodash');
 
 mongoose.connect('mongodb://localhost/pixelpainter');
 
@@ -151,13 +152,22 @@ app.get('/',
 );
 
 app.post('/save', function (req, res) {
-  var newPainting = new Painting({
-    author: req.session.passport.user.username,
-    painting: req.body.painting,
-    user_id: req.session.passport.user._id
-  });
-  newPainting.save(function (err, painting) {
-    res.render('partials/paintingThumb', {x: 10, y: 10, painting: painting});
+  Painting.find({user_id: req.session.passport.user._id})
+    .then(function (result) {
+      if (_.findIndex(result, function (painting) {
+        return _.isEqual(painting.painting, req.body.painting);
+      }) > -1) {
+        res.send('');
+      } else {
+        var newPainting = new Painting({
+          author: req.session.passport.user.username,
+          painting: req.body.painting,
+          user_id: req.session.passport.user._id
+        });
+        newPainting.save(function (err, painting) {
+          res.render('partials/paintingThumb', {x: 10, y: 10, painting: painting});
+        });
+      }
   });
 });
 
