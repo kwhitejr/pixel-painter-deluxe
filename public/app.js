@@ -11,6 +11,12 @@ $(function () {
   }
 
   var paintingState = [];
+  var isDrawing = false;
+  $( '.canvasCell' ).mouseover(function () {
+      if (isDrawing) {
+        $(this).css('background-color', selectedSwatch);
+      }
+  });
 
   var selectedSwatch = 'white'; // the background color of the selected swatch. Default is white.
 
@@ -21,8 +27,15 @@ $(function () {
 
   function canvasEvents () {
     var $canvasCell = $( ".canvasCell" );
-    $canvasCell.on('click', clickDraw);
+    $canvasCell
+      .on('mousedown', function () {
+        isDrawing = true;
+      })
+      .on('mouseup', function() {
+        isDrawing = false;
+      });
   }
+
 
   function buttonEvents () {
     var $eraseAll = $( "input[name='eraseAll']" );
@@ -48,12 +61,6 @@ $(function () {
     console.log('You selected ' + selectedSwatch);
   }
 
-  // draw function for a single click
-  function clickDraw() {
-    // Changes selected canvas cell background-color to value stored at 'selectedColor'
-    $(this).css('background-color', selectedSwatch);
-    console.log('drawing with ' + selectedSwatch);
-  }
 
   function eraseAll() {
     // Converts background color of all canvas cells to white.
