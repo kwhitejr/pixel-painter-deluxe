@@ -1,19 +1,21 @@
 if painting
-  div(class="item canvas grid" data-painting-id="#{id}")
-    - var count = 0;
-    - for (var row = 0; row < x; row++)
-      div(class="row")
-        - for (var col = 0; col < y; col++)
-            div(class="canvasCell" id="canvas_#{row}#{col}" style={background: "#{painting[count]}"})
-            - count++;
-  div(class="buttons")
-    include ./buttons.jade
+  div(class="middleContainer")
+    div(class="item canvas grid middleItem" data-painting-id="#{id}")
+      - var count = 0;
+      - for (var row = 0; row < x; row++)
+        div(class="row")
+          - for (var col = 0; col < y; col++)
+              div(class="canvasCell" id="canvas_#{row}#{col}" style={background: "#{painting[count]}"})
+              - count++;
+    div(class="buttons middleItem")
+      include ./buttons.jade
 
 else
-  div(class="item canvas grid")
-    - for (var row = 0; row < x; row++)
-      div(class="row")
-        - for (var col = 0; col < y; col++)
-          div(class="canvasCell" id="canvas_#{row}#{col}")
-  div(class="buttons")
-    include ./buttons.jade
+  div(class="middleContainer")
+    div(class="item canvas grid middleItem")
+      - for (var row = 0; row < x; row++)
+        div(class="row")
+          - for (var col = 0; col < y; col++)
+            div(class="canvasCell" id="canvas_#{row}#{col}")
+    div(class="buttons middleItem")
+      include ./buttons.jade

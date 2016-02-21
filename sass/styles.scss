@@ -102,6 +102,15 @@ h1 {
   width: 15px;
 }
 
+.middleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.middleItem {
+
+}
+
 #selected,
 input:hover {
   border: 1px solid rgba(81, 203, 238, 1);
