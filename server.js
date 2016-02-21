@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 var CONFIG = require('./config.json');
 var mongoose = require('mongoose');
 var passport = require('passport');
@@ -36,6 +37,7 @@ app.set('view engine', 'jade');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 app.use(session({
   store: new RedisStore(
@@ -171,9 +173,9 @@ app.post('/save', function (req, res) {
   });
 });
 
-app.post('/delete', function (req, res) {
+app.post('/delete/:id', function (req, res) {
   Painting.remove(
-    {painting: req.body.painting}
+    {'_id': req.params.id}
   )
   .then(function (err, status) {
     res.sendStatus(200);
@@ -186,6 +188,7 @@ app.get('/painting/:id', function (req, res) {
     res.render('index', {
       x: 10,
       y: 10,
+      id: thispainting._id,
       painting: thispainting.painting,
       colors: CONFIG.SWATCHES.SUMMER
     });

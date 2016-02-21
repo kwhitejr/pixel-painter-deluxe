@@ -26,12 +26,17 @@ $(function () {
   }
 
   function canvasEvents () {
+    var $canvas = $( ".canvas" );
     var $canvasCell = $( ".canvasCell" );
     $canvasCell
       .on('mousedown', function () {
         isDrawing = true;
       })
       .on('mouseup', function() {
+        isDrawing = false;
+      });
+    $canvas
+      .on('mouseleave', function () {
         isDrawing = false;
       });
   }
@@ -95,13 +100,12 @@ $(function () {
   }
 
   function deletePainting() {
-    $( '.canvasCell' ).each(function (cell) {
-        paintingState.push(this.style['background-color']);
-    });
+    var id = $( '.canvas' ).data('painting-id');
+    console.log(id);
     $.ajax( {
-      url: "/delete",
+      url: "/delete/" + id,
       type: "POST",
-      data: JSON.stringify({"painting": paintingState}),
+      data: JSON.stringify({"id": id}),
       contentType: "application/json",
       success: function () {
         window.location.href = '/';
