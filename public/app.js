@@ -30,6 +30,7 @@ $(function () {
     var $canvasCell = $( ".canvasCell" );
     $canvasCell
       .on('mousedown', function () {
+        $(this).css('background-color', selectedSwatch);
         isDrawing = true;
       })
       .on('click', function() {
