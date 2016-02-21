@@ -1,7 +1,7 @@
 div(class='item swatch grid')
   - var count = 0
-  - for (var row = 0; row < 8; row++)
+  - for (var row = 0; row < swatchX; row++)
     div(class='row')
-      - for (var col = 0; col < 5; col++)
+      - for (var col = 0; col < swatchY; col++)
         div(class='swatchCell' id="swatch_#{row}#{col}" style={background: "#{colors[count]}"})
         - count++

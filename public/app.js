@@ -146,8 +146,6 @@ $(function () {
         console.error(err);
       }
     });
-
-    paintingState = [];
   }
 
 });

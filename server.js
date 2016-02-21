@@ -120,10 +120,7 @@ app.post('/signup', function (req, res) {
     username: req.body.username,
     password: req.body.password,
   });
-  // if (! User.findOne({username: req.body.username})) {
-  //   newUser.save();
-  //   res.redirect('login');
-  // }
+
   return User.findOne({username: req.body.username})
     .then(function (user) {
       if (user) {
@@ -144,8 +141,10 @@ app.get('/',
     Painting.find({user_id: req.session.passport.user._id})
     .then(function (result) {
       res.render('index', {
-        x: 10,
-        y: 10,
+        canvasX: CONFIG.GRID.CANVAS.x,
+        canvasY: CONFIG.GRID.CANVAS.y,
+        swatchX: CONFIG.GRID.SWATCH.x,
+        swatchY: CONFIG.GRID.SWATCH.y,
         colors: CONFIG.SWATCHES.SUMMER,
         paintings: result
       });
@@ -167,7 +166,11 @@ app.post('/save', function (req, res) {
           user_id: req.session.passport.user._id
         });
         newPainting.save(function (err, painting) {
-          res.render('partials/paintingThumb', {x: 10, y: 10, painting: painting});
+          res.render('partials/paintingThumb', {
+            canvasX: CONFIG.GRID.CANVAS.x,
+            canvasY: CONFIG.GRID.CANVAS.y,
+            painting: painting
+          });
         });
       }
   });
@@ -198,16 +201,16 @@ app.get('/painting/:id', function (req, res) {
   Painting.findOne({ '_id': req.params.id})
   .then(function (thispainting) {
     res.render('index', {
-      x: 10,
-      y: 10,
+      canvasX: CONFIG.GRID.CANVAS.x,
+      canvasY: CONFIG.GRID.CANVAS.y,
+      swatchX: CONFIG.GRID.SWATCH.y,
+      swatchY: CONFIG.GRID.SWATCH.x,
       id: thispainting._id,
       painting: thispainting.painting,
       colors: CONFIG.SWATCHES.SUMMER
     });
   });
 });
-
-
 
 // Catch-all route-undefined handler
 app.use(function (req, res, next) {
