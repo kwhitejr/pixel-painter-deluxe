@@ -173,6 +173,18 @@ app.post('/save', function (req, res) {
   });
 });
 
+app.post('/update/:id', function (req, res) {
+  Painting.update(
+    {'_id': req.params.id},
+    { $set:
+      {painting: req.body.painting}
+    }
+  )
+  .then(function (err, status) {
+    res.sendStatus(200);
+  });
+});
+
 app.post('/delete/:id', function (req, res) {
   Painting.remove(
     {'_id': req.params.id}
@@ -194,6 +206,8 @@ app.get('/painting/:id', function (req, res) {
     });
   });
 });
+
+
 
 // Catch-all route-undefined handler
 app.use(function (req, res, next) {
